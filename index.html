@@ -159,6 +159,19 @@
             margin-bottom: 10px;
         }
 
+        .project-role {
+            font-size: 0.9rem;
+            color: #c48b97;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 15px;
+        }
+
         /* =========================================
            ส่วนที่ 4: Contact (ติดต่อ)
            ========================================= */
@@ -196,49 +209,25 @@
 
     <!-- ส่วนที่ 1: หน้าแรก (Hero Section) -->
     <section id="hero">
-        <h1 class="hero-title">ไน้น้้น้้้น้้้้น้้้้้น้้้้้้น้้้้้้้น้้้้้้้้น้้้้้้้้้</h1>
-        <p class="hero-subtitle">นักเรียนมัธยมปลายผู้หลงใหลในด้านเทคโนโลยี</p>
+        <h1 class="hero-title" id="profile-name">กำลังโหลด...</h1>
+        <p class="hero-subtitle" id="profile-job">กรุณารอสักครู่</p>
         <a href="#projects" class="btn">ดูผลงานของฉัน</a>
     </section>
 
     <!-- ส่วนที่ 2: ประวัติส่วนตัว (About Section) -->
     <section id="about">
         <h2 style="color: #5a4646;">เกี่ยวกับฉัน</h2>
-        <div class="about-content">
-            <p>กำลังศึกษาอยู่ชั้นมัธยมศึกษาปีที่ 4 สายการเรียน วิทย์-คณิต นวัตกรรมเทคโนโลยี ที่โรงเรียน ธัญรัตน์</p>
-            <p>มีความสนใจเป็นพิเศษในด้าน เทคโนโลยี และมีเป้าหมายที่จะศึกษาต่อในคณะ วิทยาศาสตร์</p>
-            <p><br><strong style="color: #c48b97;">ทักษะความสามารถ:</strong> ประกอบหุ่นยนต์ เขียนโค้ดเบื้องต้น</p>
+        <div class="about-content" id="profile-about">
+            <p>กำลังโหลดข้อมูล...</p>
         </div>
     </section>
 
     <!-- ส่วนที่ 3: ผลงานและกิจกรรม (Projects Section) -->
     <section id="projects">
         <h2 style="color: #5a4646;">ผลงานและกิจกรรมที่โดดเด่น</h2>
-        <div class="project-grid">
-            
-            <!-- การ์ดผลงานชิ้นที่ 1 -->
-            <div class="project-card">
-                <img src="kitty.jpg" alt="รูปกิจกรรม 1" class="project-img">
-                <h3>
-                    น้องคิตตี้ชูมิดเดิ้ลฟิงเก้อ 1
-                </h3> 
-                <p>ที่น้องชูมิดเดิ้ลฟิงเก้อเพราะว่าน้องโมโหหิว</p>
-            </div>
-
-            <!-- การ์ดผลงานชิ้นที่ 2 -->
-            <div class="project-card">
-                <img src="kitty.webp" alt="รูปกิจกรรม 2" class="project-img">
-                <h3>น้องคิตตี้เป็นเอนจีเนียของฮอนด้า 2</h3>
-                <p>คิ้ตตี้นักซ่อมรถของฮอนด้าด้าด้าด้าด้าด้า</p>
-            </div>
-
-            <!-- การ์ดผลงานชิ้นที่ 3 -->
-            <div class="project-card">
-                <img src="kitty.123.jpg" alt="รูปกิจกรรม 3" class="project-img">
-                <h3>คิตตี้สตอร์เบอร์รี่มาก 3</h3>
-                <p>น้องคิตตี้กำลังคุยกับแฟนแฟ่ดๆ</p>
-            </div>
-
+        <div class="project-grid" id="project-container">
+            <!-- ข้อมูลผลงานจะถูกนำมาแสดงที่นี่ด้วย JavaScript -->
+            <p>กำลังโหลดผลงาน...</p>
         </div>
     </section>
 
@@ -257,5 +246,72 @@
         <p>&copy; 2026 พิมพ์ลภัส กลิ่นจำปา. All rights reserved.</p>
     </footer>
 
+    <!-- =========================================
+         ส่วนของ JavaScript สำหรับดึงข้อมูลจาก API
+         ========================================= -->
+    <script>
+        // กำหนด URL ของ API
+        const API_URL = "https://script.googleusercontent.com/a/macros/thanyarat.ac.th/echo?user_content_key=AUkAhnRulWByrslqU2Ou5bIV4mz0ANZ2iL_x8EDbVUbupkhEboErEu2LozPJPnKQ1KT409676nnlaaT5BGp3YiC5rVbOVzi-Dr3XRcXhnvjJsCRnhMsLpnVBlAePhOf_5yQ79c3om0GCjK5nfOhGmLxSQOz4n2n7-x418F9_NnEaj_ZBqUstcya0VhFJGMlUWuQzMngaPbMwllXUT7SSclcqvNeZp2pVdpxVZ_lBUVBu-2yNvruTAw7RK5ZPS3R6RCs8xRq9qZth4XgpyuTQPKRCuGBSt5a8jjwUwEtJ7nfKFpUTbPvpYfQ&lib=MxT0U-xJ022ICW39OQcEVYChoFSMgDQry";
+
+        // ฟังก์ชันดึงข้อมูลและอัปเดตหน้าเว็บ
+        async function fetchPortfolioData() {
+            try {
+                // เรียกข้อมูลจาก API
+                const response = await fetch(API_URL);
+                
+                // แปลงข้อมูลเป็น JSON
+                const data = await response.json();
+                
+                // 1. อัปเดตข้อมูล Profile (Hero & About)
+                const profile = data.profile;
+                
+                // ใส่ชื่อและชื่อเล่น
+                const fullName = profile.nickname ? `${profile.name} (${profile.nickname})` : profile.name;
+                document.getElementById('profile-name').innerText = fullName;
+                document.getElementById('profile-job').innerText = profile.job;
+                
+                // ใส่ข้อมูลการศึกษาและทักษะ
+                document.getElementById('profile-about').innerHTML = `
+                    <p>กำลังศึกษาอยู่ที่: <strong>${profile.university}</strong></p>
+                    <p>สาขาวิชา: <strong>${profile.major}</strong></p>
+                    <p><br><strong style="color: #c48b97;">ทักษะความสามารถ:</strong> ${profile.skills}</p>
+                `;
+
+                // 2. อัปเดตข้อมูล Portfolio (Projects)
+                const portfolio = data.portfolio;
+                const projectContainer = document.getElementById('project-container');
+                
+                // ล้างข้อมูลเดิมออกก่อน
+                projectContainer.innerHTML = '';
+                
+                // วนลูปสร้างการ์ดผลงาน
+                portfolio.forEach(item => {
+                    // แปลงรูปแบบวันที่ให้อ่านง่ายขึ้น (ตัวเลือกเพิ่มเติม)
+                    const dateObj = new Date(item.date);
+                    const formattedDate = dateObj.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                    const cardHTML = `
+                        <div class="project-card">
+                            <img src="${item.image_url}" alt="${item.title}" class="project-img" onerror="this.src='https://via.placeholder.com/300x200/fdf5f6/c48b97?text=No+Image'">
+                            <h3>${item.title}</h3>
+                            <p class="project-role">บทบาท: ${item.role}</p>
+                            <p>${item.description}</p>
+                            <p class="project-date">${formattedDate}</p>
+                        </div>
+                    `;
+                    // เพิ่มการ์ดเข้าไปใน container
+                    projectContainer.innerHTML += cardHTML;
+                });
+
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+                document.getElementById('profile-name').innerText = "ไม่สามารถโหลดข้อมูลได้";
+                document.getElementById('project-container').innerHTML = "<p>ขออภัย ไม่สามารถโหลดผลงานได้ในขณะนี้</p>";
+            }
+        }
+
+        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บเสร็จ
+        window.addEventListener('DOMContentLoaded', fetchPortfolioData);
+    </script>
 </body>
 </html>
