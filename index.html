@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | แฟ้มสะสมผลงาน</title>
+    
+    <!-- เปลี่ยนฟอนต์จาก Kanit เป็น Sarabun จาก Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           ส่วนตั้งค่าเริ่มต้น (Reset & Global Styles)
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        /* เลื่อนหน้าเว็บแบบนุ่มนวลเวลาคลิกเมนู */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #fdf5f6; /* สีพื้นหลังชมพูอ่อนละมุน */
+            color: #4a4a4a; /* สีตัวอักษรเทาเข้มเพื่อความนุ่มนวล ไม่ดำสนิท */
+            line-height: 1.6;
+        }
+
+        /* กำหนดรูปแบบของ Section แต่ละส่วน */
+        section {
+            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* =========================================
+           ส่วนนำทาง (Navbar)
+           ========================================= */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(253, 234, 238, 0.95); /* สีชมพูพาสเทลโปร่งแสงนิดๆ */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 15px rgba(200, 160, 165, 0.15); /* เงาอมชมพู */
+            padding: 15px 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7a6366; /* สีตัวอักษรเมนู */
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #c48b97; /* สีชมพูตุ่นๆ เมื่อเอาเมาส์ชี้ */
+        }
+
+        /* =========================================
+           ส่วนที่ 1: Hero (หน้าแรกสุด)
+           ========================================= */
+        #hero {
+            background: linear-gradient(135deg, #e08597 0%, #fce3e7 100%); /* ไล่สีชมพูอ่อนหรูหรา */
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            color: #5a4646; /* โทนสีเทาอมน้ำตาลชมพู */
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #7d6b6b;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background-color: #c48b97; /* ปุ่มสีชมพูหรูหรา */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(196, 139, 151, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #a8727d;
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           ส่วนที่ 2: About (แนะนำตัว)
+           ========================================= */
+        #about {
+            background-color: #ffffff; /* พื้นหลังสีขาวให้ดูสะอาด */
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        /* =========================================
+           ส่วนที่ 3: Projects (ผลงาน)
+           ========================================= */
+        #projects {
+            background-color: #fdf5f6; /* สลับกลับมาเป็นชมพูอ่อน */
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(200, 160, 165, 0.15); /* เงาละมุนๆ อมชมพู */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(200, 160, 165, 0.25);
+        }
+
+        /* สไตล์สำหรับรูปภาพในบล็อกผลงาน */
+        .project-img {
+            width: 100%;
+            height: 200px; /* กำหนดความสูงของรูปให้เท่ากันทุกบล็อก */
+            object-fit: cover; /* ทำให้รูปเต็มกรอบโดยไม่เสียสัดส่วน */
+            border-radius: 8px; /* ทำขอบรูปให้มนเล็กน้อย */
+            margin-bottom: 15px; /* ระยะห่างระหว่างรูปกับข้อความด้านล่าง */
+        }
+
+        .project-card h3 {
+            color: #5a4646;
+            margin-bottom: 10px;
+        }
+
+        /* =========================================
+           ส่วนที่ 4: Contact (ติดต่อ)
+           ========================================= */
+        #contact {
+            background-color: #ffffff;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* =========================================
+           ส่วนท้าย (Footer)
+           ========================================= */
+        footer {
+            background-color: #f5e4e7; /* สีชมพูอมเทา */
+            color: #7a6366;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- แถบเมนูด้านบน -->
+    <nav>
+        <a href="#hero">หน้าแรก</a>
+        <a href="#about">ประวัติส่วนตัว</a>
+        <a href="#projects">ผลงาน</a>
+        <a href="#contact">ติดต่อ</a>
+    </nav>
+
+    <!-- ส่วนที่ 1: หน้าแรก (Hero Section) -->
+    <section id="hero">
+        <h1 class="hero-title">ไน้น้้น้้้น้้้้น้้้้้น้้้้้้น้้้้้้้น้้้้้้้้น้้้้้้้้้</h1>
+        <p class="hero-subtitle">นักเรียนมัธยมปลายผู้หลงใหลในด้านเทคโนโลยี</p>
+        <a href="#projects" class="btn">ดูผลงานของฉัน</a>
+    </section>
+
+    <!-- ส่วนที่ 2: ประวัติส่วนตัว (About Section) -->
+    <section id="about">
+        <h2 style="color: #5a4646;">เกี่ยวกับฉัน</h2>
+        <div class="about-content">
+            <p>กำลังศึกษาอยู่ชั้นมัธยมศึกษาปีที่ 4 สายการเรียน วิทย์-คณิต นวัตกรรมเทคโนโลยี ที่โรงเรียน ธัญรัตน์</p>
+            <p>มีความสนใจเป็นพิเศษในด้าน เทคโนโลยี และมีเป้าหมายที่จะศึกษาต่อในคณะ วิทยาศาสตร์</p>
+            <p><br><strong style="color: #c48b97;">ทักษะความสามารถ:</strong> ประกอบหุ่นยนต์ เขียนโค้ดเบื้องต้น</p>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 3: ผลงานและกิจกรรม (Projects Section) -->
+    <section id="projects">
+        <h2 style="color: #5a4646;">ผลงานและกิจกรรมที่โดดเด่น</h2>
+        <div class="project-grid">
+            
+            <!-- การ์ดผลงานชิ้นที่ 1 -->
+            <div class="project-card">
+                <img src="kitty.jpg" alt="รูปกิจกรรม 1" class="project-img">
+                <h3>
+                    น้องคิตตี้ชูมิดเดิ้ลฟิงเก้อ 1
+                </h3> 
+                <p>ที่น้องชูมิดเดิ้ลฟิงเก้อเพราะว่าน้องโมโหหิว</p>
+            </div>
+
+            <!-- การ์ดผลงานชิ้นที่ 2 -->
+            <div class="project-card">
+                <img src="kitty.webp" alt="รูปกิจกรรม 2" class="project-img">
+                <h3>น้องคิตตี้เป็นเอนจีเนียของฮอนด้า 2</h3>
+                <p>คิ้ตตี้นักซ่อมรถของฮอนด้าด้าด้าด้าด้าด้า</p>
+            </div>
+
+            <!-- การ์ดผลงานชิ้นที่ 3 -->
+            <div class="project-card">
+                <img src="kitty.123.jpg" alt="รูปกิจกรรม 3" class="project-img">
+                <h3>คิตตี้สตอร์เบอร์รี่มาก 3</h3>
+                <p>น้องคิตตี้กำลังคุยกับแฟนแฟ่ดๆ</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 4: ช่องทางการติดต่อ (Contact Section) -->
+    <section id="contact">
+        <h2 style="color: #5a4646;">ติดต่อฉัน</h2>
+        <div class="contact-info">
+            <p>อีเมล: your.email@example.com</p>
+            <p>โทรศัพท์: 08x-xxx-xxxx</p>
+            <p>Facebook / Instagram: pxmlxpxt_nx2e</p>
+        </div>
+    </section>
+
+    <!-- ส่วนท้ายเว็บ (Footer) -->
+    <footer>
+        <p>&copy; 2026 พิมพ์ลภัส กลิ่นจำปา. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
